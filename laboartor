@@ -1,0 +1,117 @@
+Task #5 - changing DOM
+
+const minusBtn = document.getElementById('minus-btn');
+const numberInput = document.getElementById('number-input');
+const plusBtn = document.getElementById('plus-btn');
+ minusBtn.addEventListener('click', function() {
+ let currentValue = parseInt(numberInput.value); 
+   if (currentValue > 0) { 
+    currentValue--;
+    numberInput.value = currentValue;
+   }   if (currentValue === 0) {
+   minusBtn.disabled = true;
+  }
+   plusBtn.disabled = false; 
+ });
+
+ plusBtn.addEventListener('click', function() {
+  let currentValue = parseInt(numberInput.value); 
+  if (currentValue < 9) {
+    currentValue++;
+    numberInput.value = currentValue;
+    }
+ if (currentValue === 9) { 
+    plusBtn.disabled = true;
+   }
+  minusBtn.disabled = false; 
+  })
+  
+  
+  
+  Task #6 - adding elements to DOM
+
+ const boardSize = 8; 
+const table = document.querySelector('#chessboard'); 
+for (let i = 0; i < boardSize; i++) { 
+ const row = document.createElement('tr'); 
+ for (let j = 0; j < boardSize; j++) { 
+ const cell = document.createElement('td'); 
+ if ((i + j) % 2 === 0) {
+cell.style.backgroundColor = 'black';
+   }
+row.appendChild(cell); 
+ }
+table.appendChild(row); 
+     }
+     
+     
+Task #10 - DOM elements properties
+
+ const field = document.querySelector('#field');
+ const ball = document.querySelector('#ball');
+
+ const fieldRect = field.getBoundingClientRect();
+ const ballRect = ball.getBoundingClientRect();
+
+ const centerX = fieldRect.left + (fieldRect.width - ballRect.width) / 2;
+ const centerY = fieldRect.top + (fieldRect.height - ballRect.height) / 2;
+
+ ball.style.left = centerX + 'px';
+ ball.style.top = centerY + 'px';
+
+ball.style.left = "0";
+ball.style.top = "0";
+
+ ball.style.left = fieldRect.width - ballRect.width + "px";
+ ball.style.top = "0";
+
+ ball.style.left = "0";
+ ball.style.top = fieldRect.height - ballRect.height + "px";
+
+ ball.style.left = fieldRect.width - ballRect.width + "px";
+ ball.style.top = fieldRect.height - ballRect.height + "px";
+
+
+Task #15 - keyboard events
+const numberInput = document.getElementById('numberInput');
+numberInput.addEventListener('blur', () => {
+const inputValue = Number(numberInput.value);
+ if (isNaN(inputValue)) {
+ numberInput.value = 0;
+  }
+ });
+
+Task #16 - keyboard events
+const numberInput = document.getElementById("numberInput");
+numberInput.addEventListener("input", () => 
+{\const regex = /^\d*\.?\d*$/; 
+const value = numberInput.value;
+  if (!regex.test(value)) {
+ numberInput.value = "";
+  }
+});
+
+Task #20 - working with DOM
+
+ function deleteRow(button) {
+ var row = button.parentNode.parentNode;
+ row.parentNode.removeChild(row);
+}
+ function addUser(event) {
+ event.preventDefault();
+ var name = this.elements["name"].value;
+  var user = this.elements["user"].checked ? "X" : "";
+ var admin = this.elements["admin"].checked ? "X" : "";
+var table = document.getElementById("users-table").getElementsByTagName("tbody")[0];
+var newRow = table.insertRow();
+var nameCell = newRow.insertCell();
+var userCell = newRow.insertCell();
+var adminCell = newRow.insertCell();
+var buttonCell = newRow.insertCell()
+nameCell.innerHTML = name;
+userCell.innerHTML = user;
+adminCell.innerHTML = admin;
+buttonCell.innerHTML = '<button onclick="deleteRow(this)">X</button>';
+this.reset();
+}
+ document.getElementById("add-user-form").addEventListener("submit", addUser);
